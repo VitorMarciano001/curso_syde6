@@ -9,7 +9,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Minha janela")
         self.setFixedSize(QSize(600,400))
 
-        button = QPushButton("Botao 1")
+        button = QPushButton("Botao Principal")
         self.setCentralWidget(button)
 
         button.setCheckable(True)
