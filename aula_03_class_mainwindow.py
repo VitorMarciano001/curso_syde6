@@ -9,18 +9,26 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Minha janela")
         self.setFixedSize(QSize(600,400))
 
-        button = QPushButton("Botao Principal")
-        self.setCentralWidget(button)
+        self.button = QPushButton("Botao Principal")
+        self.setCentralWidget(self.button)
 
-        button.setCheckable(True)
-        button.clicked.connect(self.imprimir)
-        button.clicked.connect(self.clicado)
+        self.button.setCheckable(True)
+        self.button.clicked.connect(self.imprimir)
+        self.button.clicked.connect(self.clicado)
 
     def imprimir(self):
         print("Botao clicado")
 
     def clicado(self, s):
-        print("clicado", s)
+        print("Clicado", s)
+        if s:
+            self.button.setStyleSheet(u"background-color: green")
+            self.button.setText("Ligado")
+        else:
+            self.button.setStyleSheet(u"background-color: red")
+            self.button.setText("Desligado")
+
+        #self.button.setEnabled(False)
 
 app = QApplication(sys.argv)
 w = MainWindow()
