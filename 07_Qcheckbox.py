@@ -12,6 +12,7 @@ class MainWindow(QMainWindow):
 
         self.lbl = QLabel("Voce fuma?")
         self.check = QCheckBox("Sim")
+        self.check.setTristate(True)
         self.lbl2 = QLabel()
         #self.check.setCheckState(Qt.Checked)
 
