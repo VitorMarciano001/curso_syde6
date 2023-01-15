@@ -1,9 +1,9 @@
-import sys
 from PySide6.QtWidgets import (QApplication, QMainWindow, QFrame, 
                                QLineEdit, QComboBox, QLabel, 
                                QVBoxLayout)
 from PySide6.QtCore import Qt
 import pycep_correios
+import sys
 
 class MainWindow(QMainWindow):
     def __init__(self):
