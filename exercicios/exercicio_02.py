@@ -3,6 +3,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QFrame,
                                QLineEdit, QComboBox, QLabel, 
                                QVBoxLayout)
 from PySide6.QtCore import Qt
+import pycep_correios
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -12,52 +13,68 @@ class MainWindow(QMainWindow):
         self.setMaximumSize(600,480)
         self.setMinimumSize(400,320)
 
-        self.lbl1 = QLabel("Nome")
-        self.lbl1.setAlignment(Qt.AlignHCenter)
-        self.lne1 = QLineEdit()
+        # LABEL E LINE EDIT NOME
+        self.lbl_nome = QLabel("Nome")
+        self.lbl_nome.setAlignment(Qt.AlignHCenter)
+        self.nome = QLineEdit()
 
-        self.lbl2 = QLabel("Sexo")
-        self.lbl2.setAlignment(Qt.AlignHCenter)
-        self.cmb = QComboBox()
-        self.cmb.addItems(["Masculino", "Feminino", "Outro"])
+        # LABEL E COMBO BOX SEXO
+        self.sexo = QLabel("Sexo")
+        self.sexo.setAlignment(Qt.AlignHCenter)
+        self.cmb_sexo = QComboBox()
+        self.cmb_sexo.addItems(["Masculino", "Feminino", "Outro"])
 
-        self.lbl3 = QLabel("CEP")
-        self.lbl3.setAlignment(Qt.AlignHCenter)
-        self.lne3 = QLineEdit()
-        
+        # LABEL E LINE EDIT CEP
+        self.lbl_cep = QLabel("CEP")
+        self.lbl_cep.setAlignment(Qt.AlignHCenter)
+        self.cep = QLineEdit()
 
-        self.lbl4 = QLabel("Lagradouro")
-        self.lbl4.setAlignment(Qt.AlignHCenter)
-        self.lne4 = QLineEdit()
+        # LABEL E LINE EDIT LOGRADOURO
+        self.lbl_lagra = QLabel("Logradouro")
+        self.lbl_lagra.setAlignment(Qt.AlignHCenter)
+        self.lagradouro = QLineEdit()
 
-        self.lbl5 = QLabel("Bairro")
-        self.lbl5.setAlignment(Qt.AlignHCenter)
-        self.lne5 = QLineEdit()
+        # LABEL E LINE EDIT BAIRRO
+        self.lbl_bairro = QLabel("Bairro")
+        self.lbl_bairro.setAlignment(Qt.AlignHCenter)
+        self.bairro = QLineEdit()
 
-        self.lbl6 = QLabel("Cidade")
-        self.lbl6.setAlignment(Qt.AlignHCenter)
-        self.lne6 = QLineEdit()
+        # LABEL E LINE EDIT CIDADE
+        self.lbl_city = QLabel("Cidade")
+        self.lbl_city.setAlignment(Qt.AlignHCenter)
+        self.cidade = QLineEdit()
 
         # SETANDO LAYOUT
         self.layout = QVBoxLayout()
-        self.layout.addWidget(self.lbl1)
-        self.layout.addWidget(self.lne1)
-        self.layout.addWidget(self.lbl2)
-        self.layout.addWidget(self.cmb)
-        self.layout.addWidget(self.lbl3)
-        self.layout.addWidget(self.lne3)
-        self.layout.addWidget(self.lbl4)
-        self.layout.addWidget(self.lne4)
-        self.layout.addWidget(self.lbl5)
-        self.layout.addWidget(self.lne5)
-        self.layout.addWidget(self.lbl6)
-        self.layout.addWidget(self.lne6)
+        self.layout.addWidget(self.lbl_nome)
+        self.layout.addWidget(self.nome)
+        self.layout.addWidget(self.sexo)
+        self.layout.addWidget(self.cmb_sexo)
+        self.layout.addWidget(self.lbl_cep)
+        self.layout.addWidget(self.cep)
+        self.layout.addWidget(self.lbl_lagra)
+        self.layout.addWidget(self.lagradouro)
+        self.layout.addWidget(self.lbl_bairro)
+        self.layout.addWidget(self.bairro)
+        self.layout.addWidget(self.lbl_city)
+        self.layout.addWidget(self.cidade)
 
         # SETANDO QFRAME E ADICIONANDO AO WIDGET CENTRAL
         container = QFrame()
         container.setLayout(self.layout)
-
         self.setCentralWidget(container)
+
+        # CONECTANDO O LINE EDIT A FUNCAO BUSCA_CEP PARA MUDAR AS LINE EDIT CORRESPONDENTES
+        self.cep.editingFinished.connect(self.busca_cep)
+
+    # FUNCAO QUE BUSCA O CEP E RETORNA NAS DEVIDAS LINE EDIT
+    def busca_cep(self):
+        endereco = pycep_correios.get_address_from_cep(self.cep.text())
+        print(endereco)
+        self.lagradouro.setText(endereco['logradouro'])
+        self.bairro.setText(endereco['bairro'])
+        self.cidade.setText(endereco['cidade'])
+
 
 
 
