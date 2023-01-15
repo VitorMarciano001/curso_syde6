@@ -19,8 +19,8 @@ class MainWindow(QMainWindow):
         self.nome = QLineEdit()
 
         # LABEL E COMBO BOX SEXO
-        self.sexo = QLabel("Sexo")
-        self.sexo.setAlignment(Qt.AlignHCenter)
+        self.lbl_sexo = QLabel("Sexo")
+        self.lbl_sexo.setAlignment(Qt.AlignHCenter)
         self.cmb_sexo = QComboBox()
         self.cmb_sexo.addItems(["Masculino", "Feminino", "Outro"])
 
@@ -48,7 +48,7 @@ class MainWindow(QMainWindow):
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.lbl_nome)
         self.layout.addWidget(self.nome)
-        self.layout.addWidget(self.sexo)
+        self.layout.addWidget(self.lbl_sexo)
         self.layout.addWidget(self.cmb_sexo)
         self.layout.addWidget(self.lbl_cep)
         self.layout.addWidget(self.cep)
