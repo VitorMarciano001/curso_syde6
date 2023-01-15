@@ -75,9 +75,6 @@ class MainWindow(QMainWindow):
         self.bairro.setText(endereco['bairro'])
         self.cidade.setText(endereco['cidade'])
 
-
-
-
 app = QApplication(sys.argv)
 w = MainWindow()
 w.show()
