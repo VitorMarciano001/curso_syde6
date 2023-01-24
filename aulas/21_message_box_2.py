@@ -31,6 +31,7 @@ class MainWindow(QMainWindow):
     def show_message(self, s):
         self.msg = QMessageBox()
         self.msg.setIcon(QMessageBox.Warning)
+        self.msg.set
         self.msg.setWindowTitle("Message")
         self.msg.setText("Operacao concluida com sucesso")
         self.msg.exec()
