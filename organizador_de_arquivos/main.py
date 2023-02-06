@@ -22,7 +22,7 @@ class MainWindow(QMainWindow):
         self.central_frame.setStyleSheet("background: #ffb347")
         self.main_layout = QVBoxLayout(self.central_frame)  
         self.main_layout.setContentsMargins(0,0,0,0)
-        self.main_layout.setSpacing(0)
+        #self.main_layout.setSpacing(0)
         #---------------------------------------------------------      
         
         #---------------------------------------------------------
